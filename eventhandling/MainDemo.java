@@ -15,7 +15,10 @@ Container c;
     JRadioButton rmale;
     JRadioButton rfemale;
     JComboBox cday,cmonth,cyear;
-    
+    JTextField txtaddress;
+    JCheckBox box1;
+    JButton btnlogin;
+    JTextArea txtarea1;
     
 RegistrationDemo()
 {
@@ -43,16 +46,23 @@ lbladdress=new JLabel("address");
 lbladdress.setBounds(30,210,70,30);
 
 txtname=new JTextField();
-txtname.setBounds(100,50,100,30);
+txtname.setBounds(100,50,150,30);
 
 txtnumber=new JTextField();
-txtnumber.setBounds(100,90,100,30);
+txtnumber.setBounds(100,90,150,30);
 
 rmale=new JRadioButton("male");
 rmale.setBounds(100,170,70,30);
 
+
+
 rfemale=new JRadioButton("female");
-rfemale.setBounds(200,170,70,30);
+rfemale.setBounds(170,170,70,30);
+
+ButtonGroup gendergroup=new ButtonGroup();
+gendergroup.add(rmale);
+gendergroup.add(rfemale);
+
 String day[]=new String[31];
 for(int i=1;i<=31;i++)
     {
@@ -73,6 +83,18 @@ for(int i=1990;i<2015;i++)
 cyear=new JComboBox(year);
 cyear.setBounds(260,130,70,30);
 
+txtaddress=new JTextField();
+txtaddress.setBounds(100,210,150,50);
+
+box1=new JCheckBox("I accept the terms and conditions");
+box1.setBounds(30,270,300,20);
+
+btnlogin=new JButton("login");
+btnlogin.setBounds(60,320,100,50);
+
+txtarea1=new JTextArea();
+txtarea1.setBounds(500,30,300,500);
+
 c.add(lblname);
 c.add(lblnumber);
 c.add(lbldob);
@@ -85,6 +107,10 @@ c.add(cmonth);
 c.add(cyear);
 c.add(rmale);
 c.add(rfemale);
+c.add(txtaddress);
+c.add(box1);
+c.add(btnlogin);
+c.add(txtarea1);
 }
 
 }
