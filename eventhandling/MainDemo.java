@@ -10,6 +10,7 @@ Container c;
     JLabel lbldob;
     JLabel lblgender;
     JLabel lbladdress;
+		JLabel lblerror;
     JTextField txtname;
     JTextField txtnumber;
     JRadioButton rmale;
@@ -19,7 +20,7 @@ Container c;
     JCheckBox box1;
     JButton btnlogin;
     JTextArea txtarea1;
-    
+		ButtonGroup gendergroup;
 RegistrationDemo()
 {
 		c=this.getContentPane();
@@ -53,11 +54,12 @@ RegistrationDemo()
 
 		rmale=new JRadioButton("male");
 		rmale.setBounds(100,170,70,30);
-
+		rmale.setActionCommand("Maile");
 
 
 		rfemale=new JRadioButton("female");
 		rfemale.setBounds(170,170,70,30);
+		rfemale.setActionCommand("Female");
 
 		ButtonGroup gendergroup=new ButtonGroup();
 		gendergroup.add(rmale);
@@ -93,8 +95,6 @@ RegistrationDemo()
 		btnlogin.setBounds(60,320,100,50);
 
 		btnlogin.addActionListener(this);
-		
-		
 
 		txtarea1=new JTextArea();
 		txtarea1.setBounds(500,30,300,500);
@@ -118,23 +118,32 @@ RegistrationDemo()
 }
 		public void actionPerformed(ActionEvent e) {
 				if(e.getSource() == btnlogin ) {
-						txtarea1.append("Username=" + txtname.getText()+ "  ");
-						txtarea1.append("Phone="+ txtnumber.getText() + "  " + "\n");
-						txtarea1.append("DOB:"+ "day=" +cday.getSelectedItem()+ "\n" + "Month="+ cmonth.getSelectedItem()
-														+ "\n" + "Year=" + cyear.getSelectedItem());
-						// while(allradiobuttons.hasMoreElements()) {
-						// 		JRadioButton temp = allradiobuttons.nextElement();
-						// 		if (temp.isSelected()) {
-						// 				String radiochecked = new String();
-						// 				radiochecked = temp.getText();
-						// 		}
-								
-						// }
-						// textarea1.append("Gender=" + radiochecked + "\n");
+						if(txtname.getText().equals("") || txtnumber.getText().equals("")|| txtaddress.getText().equals("") || box1.isSelected() == false) {
+								txtarea1.setText("Error::: \n Have a look at the submission once again:");
 				}
-				
-		}
+				else {
+								txtarea1.append("Username=" + txtname.getText()+ "  ");
+								txtarea1.append("Phone="+ txtnumber.getText() + "  " + "\n");
+								txtarea1.append("DOB:"+ "day=" +cday.getSelectedItem()+ " " + "Month="+ cmonth.getSelectedItem()
+																+ " " + "Year=" + cyear.getSelectedItem() + "\n");
 
+								String radiotext = "";
+								if (rmale.isSelected()) {
+										radiotext = rmale.getText();
+								}
+								if (rfemale.isSelected()) {
+										radiotext = rfemale.getText();
+								}
+								txtarea1.append("Gender="+ radiotext + "\n");
+								txtarea1.append("Address="+txtaddress.getText() + "\n");
+						
+								if (box1.isSelected()) {
+										txtarea1.append(" Thanks for the submission \n");
+								}
+						}
+						
+				}
+		}
 }
 
 class MainDemo
@@ -145,6 +154,8 @@ class MainDemo
 				r.setVisible(true);
 				r.setBounds(100,100,1000,500);
 				r.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+				
 		}
 }
     
